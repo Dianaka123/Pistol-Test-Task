@@ -55,7 +55,12 @@ namespace Assets.Scripts.InputSystem.Implementation
         {
             var weapon = GetWeaponByType(type);
             image.sprite = weapon.WeaponImage;
-            button.onClick.AddListener(() => { Switch?.Invoke(weapon); });
+            button.onClick.AddListener(() => 
+            {
+                _currentWeapon = weapon;
+
+                Switch?.Invoke(_currentWeapon);
+            });
         }
 
         private Weapon GetWeaponByType(WeaponTypes type)

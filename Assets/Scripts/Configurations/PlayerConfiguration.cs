@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Models;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Configurations
@@ -8,7 +7,7 @@ namespace Assets.Scripts.Configurations
     public class PlayerConfiguration : ScriptableObject
     {
         public int Health;
-        public int Speed;
+        public float Speed;
 
         public Player Prefab;
     }

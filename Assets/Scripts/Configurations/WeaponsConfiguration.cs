@@ -13,10 +13,11 @@ namespace Assets.Scripts.Configurations
         public class WeaponConfiguration
         {
             public Sprite Weapon;
-            public GameObject Bullet;
+            public Sprite Bullet;
             public float Damage;
             public float HeatRadius;
-            public int BulletCountInOneShoot;
+            public int AdditionalBulletCount;
+            public float ShootAngle;
             public WeaponTypes Type;
         }
 
