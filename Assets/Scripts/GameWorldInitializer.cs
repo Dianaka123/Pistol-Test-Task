@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Configurations;
+using Assets.Scripts.InputSystem.Interface;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Models;
 using UnityEngine;

@@ -1,4 +1,5 @@
 using Assets.Scripts.Models;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Managers
 {
@@ -6,5 +7,7 @@ namespace Assets.Scripts.Managers
     {
         public Player Player { get; set; }
         public Enemy[] Enemies { get; set; }
+
+        public List<Weapon> Weapons { get; set; }
     }
 }

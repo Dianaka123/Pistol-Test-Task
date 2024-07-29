@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.InputSystem.Implementation.Base
+namespace Assets.Scripts.InputSystem.Implementation.Joystick.Base
 {
-    public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IInputSystem
+    public class JoystickBase : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IMovingSystem
     {
         public float Horizontal { get { return (snapX) ? SnapFloat(input.x, AxisOptions.Horizontal) : input.x; } }
         public float Vertical { get { return (snapY) ? SnapFloat(input.y, AxisOptions.Vertical) : input.y; } }

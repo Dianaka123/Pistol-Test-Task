@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.InputSystem.Implementation.Base;
+﻿using Assets.Scripts.InputSystem.Implementation.Joystick.Base;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.InputSystem.Implementation
+namespace Assets.Scripts.InputSystem.Implementation.Joystick
 {
-    public class DynamicJoystick : Joystick
+    public class DynamicJoystick : JoystickBase
     {
         public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
 

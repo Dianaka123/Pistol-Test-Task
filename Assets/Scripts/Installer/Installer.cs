@@ -1,4 +1,5 @@
 using Assets.Scripts.Handlers;
+using Assets.Scripts.InputSystem.Implementation;
 using Assets.Scripts.Managers;
 using Zenject;
 
@@ -13,6 +14,8 @@ namespace Assets.Scripts.Installer
             Container.BindInterfacesAndSelfTo<GameWorldInitializer>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<PlayerInputHandler>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<ShootSystem>().AsSingle();
         }
     }
 }

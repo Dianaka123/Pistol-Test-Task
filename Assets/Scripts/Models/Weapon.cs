@@ -1,23 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Assets.Scripts.Enums;
 using UnityEngine;
+using static Assets.Scripts.Configurations.WeaponsConfiguration;
 
 namespace Assets.Scripts.Models
 {
-    public abstract class Weapon : MonoBehaviour
+    public class Weapon
     {
-        private float _damage;
-        private float _heatRadius;
-        private int _bulletCountInOneShoot;
+        public float Damage { get; private set; }
+        public float HeatRadius { get; private set; }
+        public int BulletCountInOneShoot { get; private set; }
+        public GameObject Bullet { get; private set; }
+        public Sprite WeaponImage { get; private set; }
+        public WeaponTypes Type { get; private set; }
 
-        public void Init(float damage, float heatRadius, int bulletCountInOneShoot)
+        public Weapon(WeaponConfiguration weaponConfiguration)
         {
-            _damage = damage;
-            _heatRadius = heatRadius;
-            _bulletCountInOneShoot = bulletCountInOneShoot;
+            Damage = weaponConfiguration.Damage;
+            HeatRadius = weaponConfiguration.HeatRadius;
+            BulletCountInOneShoot = weaponConfiguration.BulletCountInOneShoot;
+            Bullet = weaponConfiguration.Bullet;
+            WeaponImage = weaponConfiguration.Weapon;
+            Type = weaponConfiguration.Type;
         }
     }
 }

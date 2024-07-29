@@ -1,12 +1,12 @@
-﻿using Assets.Scripts.InputSystem.Implementation.Base;
+﻿using Assets.Scripts.InputSystem.Implementation.Joystick.Base;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.InputSystem.Implementation
+namespace Assets.Scripts.InputSystem.Implementation.Joystick
 {
-    public class FloatingJoystick : Joystick
+    public class FloatingJoystick : JoystickBase
     {
         protected override void Start()
         {
