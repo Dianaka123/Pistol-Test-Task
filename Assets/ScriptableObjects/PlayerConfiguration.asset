@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: PlayerConfiguration
   m_EditorClassIdentifier: 
   Health: 10
-  Speed: 10
-  JumpHeight: 5
-  PlayerPrefab: {fileID: 0}
+  Speed: 1
+  Prefab: {fileID: 1228558023030590151, guid: 627bd1887e4141a40919b7ef1af0532d, type: 3}

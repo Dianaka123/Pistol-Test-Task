@@ -9,18 +9,42 @@ namespace Assets.Scripts.Models
 {
     public class Player : MonoBehaviour
     {
+        private readonly int WalkTriggerHash = Animator.StringToHash("Walk");
+        private readonly int ShootTriggerHash = Animator.StringToHash("Shoot");
+
         [SerializeField]
         private Animator _animator;
 
         private int _health;
         private float _speed;
-        private float _jumpHeight;
 
-        public void Init(int health, float speed, float jumpHeight)
+        public void Init(int health, float speed)
         {
             _health = health;
             _speed = speed;
-            _jumpHeight = jumpHeight;
+        }
+
+        public void PlayRunAnimation(bool isRun)
+        {
+            PlayAnimationByBool(isRun, WalkTriggerHash);
+        }
+
+        public void Move(Vector2 direction)
+        {
+            var directionV3 = new Vector3(direction.x, direction.y, 0);
+            transform.position += directionV3 * _speed;
+        }
+
+        private void PlayAnimationByBool(bool isAniamtionActive, int hash)
+        {
+            if (isAniamtionActive)
+            {
+                _animator.SetTrigger(hash);
+            }
+            else
+            {
+                _animator.ResetTrigger(hash);
+            }
         }
     }
 }

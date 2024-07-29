@@ -9,8 +9,7 @@ namespace Assets.Scripts.Configurations
     {
         public int Health;
         public int Speed;
-        public int JumpHeight;
 
-        public Player PlayerPrefab;
+        public Player Prefab;
     }
 }
