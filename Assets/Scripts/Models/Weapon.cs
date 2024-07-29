@@ -8,6 +8,7 @@ namespace Assets.Scripts.Models
     {
         public float Damage { get; private set; }
         public float HeatRadius { get; private set; }
+        public float ShootAngle { get; private set; }
         public int AdditionalBulletCount { get; private set; }
         public Sprite Bullet { get; private set; }
         public Sprite WeaponImage { get; private set; }
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Models
             Bullet = weaponConfiguration.Bullet;
             WeaponImage = weaponConfiguration.Weapon;
             Type = weaponConfiguration.Type;
+            ShootAngle = weaponConfiguration.ShootAngle;
         }
     }
 }
