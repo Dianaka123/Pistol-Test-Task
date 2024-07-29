@@ -9,14 +9,12 @@ namespace Assets.Scripts.Models
         [SerializeField]
         private SpriteRenderer _image;
 
-        private DateTime _spawnTime;
         private float _radius;
         private Vector3 _startPosition;
 
-        public void Init(DateTime spawnTime, float radius, Sprite image, Vector3 startPosition, Quaternion startRotation)
+        public void Init(float radius, Sprite image, Vector3 startPosition, Quaternion startRotation)
         {
             _image.sprite = image;
-            _spawnTime = spawnTime;
             _radius = radius;
             _startPosition = startPosition;
 
@@ -24,15 +22,13 @@ namespace Assets.Scripts.Models
             transform.rotation = startRotation;
         }
 
-        public TimeSpan TimeLife => DateTime.Now - _spawnTime;
+        public bool IsMoveInsideRadius => GetBulletDistanceFromStart() > _radius;
 
-        public bool IsMoveInsideRaius => GetBulletDistanceFromStart() > _radius;
-
-        public class Pool : MonoMemoryPool<DateTime, float, Sprite, Vector3, Quaternion, Bullet>
+        public class Pool : MonoMemoryPool<float, Sprite, Vector3, Quaternion, Bullet>
         {
-            protected override void Reinitialize(DateTime spawnTime, float radius, Sprite image, Vector3 startPosition, Quaternion startRotattion, Bullet item)
+            protected override void Reinitialize(float radius, Sprite image, Vector3 startPosition, Quaternion startRotattion, Bullet item)
             {
-                item.Init(spawnTime, radius, image, startPosition, startRotattion);
+                item.Init( radius, image, startPosition, startRotattion);
             }
         }
 

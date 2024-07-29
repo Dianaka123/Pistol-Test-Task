@@ -3,18 +3,15 @@ using Assets.Scripts.Managers;
 using Assets.Scripts.Models;
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.InputSystem.Implementation
 {
-    //TODO: add pool for bullets
     public class ShootSystem : IShootSystem, IFixedTickable
     {
         private const float Speed = 5;
         private const double TimeoutSec = 1;
-        private const float ShootAngle = 60; //2alpha
 
         private IWeaponSystem _weaponSystem;
         private IShootingNotifier _shootingNotifier;
@@ -22,6 +19,7 @@ namespace Assets.Scripts.InputSystem.Implementation
         private GameManager _gameManager;
 
         private List<Bullet> _bullets = new();
+        private TimeSpan _intervalFromLastShoot = TimeSpan.FromSeconds(TimeoutSec);
 
         public ShootSystem(IWeaponSystem weaponSystem, IShootingNotifier shootingNotifier, GameManager gameManager, Bullet.Pool pool)
         {
@@ -33,12 +31,14 @@ namespace Assets.Scripts.InputSystem.Implementation
 
         public void FixedTick()
         {
+            _intervalFromLastShoot += TimeSpan.FromSeconds(Time.fixedDeltaTime);
+
             for (int i = 0; i < _bullets.Count; i++)
             {
                 var bullet = _bullets[i];
                 bullet.transform.position += bullet.transform.up * Speed * Time.fixedDeltaTime;
 
-                if (bullet.IsMoveInsideRaius)
+                if (bullet.IsMoveInsideRadius)
                 {
                     _pool.Despawn(bullet);
                     _bullets.Remove(bullet);
@@ -47,15 +47,16 @@ namespace Assets.Scripts.InputSystem.Implementation
 
             if (_shootingNotifier.IsShoot)
             {
-                if (_bullets.Count > 0 && _bullets[0].TimeLife.TotalSeconds < TimeoutSec)
+                if (_intervalFromLastShoot.TotalSeconds < TimeoutSec)
                 {
                     return;
                 }
+                _intervalFromLastShoot = TimeSpan.FromSeconds(_intervalFromLastShoot.TotalSeconds % TimeoutSec);
 
                 var weapon = _weaponSystem.CurrentWeapon;
                 var player = _gameManager.Player;
 
-                _bullets.Add(_pool.Spawn(DateTime.Now, weapon.HeatRadius, weapon.Bullet, player.WeaponShootTransform.position, player.transform.rotation));
+                _bullets.Add(_pool.Spawn(weapon.HeatRadius, weapon.Bullet, player.WeaponShootTransform.position, player.transform.rotation));
 
                 float angleStep = weapon.ShootAngle / (weapon.AdditionalBulletCount * 2);
 
@@ -65,11 +66,11 @@ namespace Assets.Scripts.InputSystem.Implementation
 
                     var playerRotation = player.transform.rotation;
 
-                    var startRotation = Quaternion.Euler(0, 0, angleStep) * playerRotation;
-                    var mirorredStartRotation = Quaternion.Euler(0, 0, -angleStep) * playerRotation;
+                    var startRotation = Quaternion.Euler(0, 0, angle) * playerRotation;
+                    var mirorredStartRotation = Quaternion.Euler(0, 0, -angle) * playerRotation;
 
-                    _bullets.Add(_pool.Spawn(DateTime.Now, weapon.HeatRadius, weapon.Bullet, player.WeaponShootTransform.position, startRotation));
-                    _bullets.Add(_pool.Spawn(DateTime.Now, weapon.HeatRadius, weapon.Bullet, player.WeaponShootTransform.position, mirorredStartRotation));
+                    _bullets.Add(_pool.Spawn(weapon.HeatRadius, weapon.Bullet, player.WeaponShootTransform.position, startRotation));
+                    _bullets.Add(_pool.Spawn(weapon.HeatRadius, weapon.Bullet, player.WeaponShootTransform.position, mirorredStartRotation));
                 }
             }
         }
