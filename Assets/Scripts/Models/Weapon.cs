@@ -1,6 +1,6 @@
+using Assets.Scripts.Configurations;
 using Assets.Scripts.Enums;
 using UnityEngine;
-using static Assets.Scripts.Configurations.WeaponsConfiguration;
 
 namespace Assets.Scripts.Models
 {
@@ -14,7 +14,7 @@ namespace Assets.Scripts.Models
         public Sprite WeaponImage { get; private set; }
         public WeaponTypes Type { get; private set; }
 
-        public Weapon(WeaponConfiguration weaponConfiguration)
+        public Weapon(WeaponsConfiguration.WeaponConfiguration weaponConfiguration)
         {
             Damage = weaponConfiguration.Damage;
             HitRadius = weaponConfiguration.HitRadius;

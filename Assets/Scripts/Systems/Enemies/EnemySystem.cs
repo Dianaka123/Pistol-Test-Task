@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
-using static Assets.Scripts.Configurations.EnemiesConfiguration;
 
-namespace Assets.Scripts.Systems
+namespace Assets.Scripts.Systems.Enemies
 {
     public class EnemySystem : IInitializable, ITickable, IEnemyManager
     {
@@ -38,30 +37,30 @@ namespace Assets.Scripts.Systems
 
         public void Tick()
         {
-            foreach(var enemyInfo in _enemiesInfo)
+            foreach (var enemyInfo in _enemiesInfo)
             {
                 var enemy = enemyInfo.Enemy;
                 var helthBar = enemyInfo.HealthBar;
 
                 var healthBarWorldPosition = enemy.transform.position + Vector3.up * enemy.Size.y * 0.6f;
-                
-                helthBar.transform.position= _uiManager.Camera.WorldToScreenPoint(healthBarWorldPosition);
+
+                helthBar.transform.position = _uiManager.Camera.WorldToScreenPoint(healthBarWorldPosition);
             }
         }
 
-        private void SpawnEnemy(EnemyConfig enemyConfig, Vector3 position)
+        private void SpawnEnemy(EnemiesConfiguration.EnemyConfig enemyConfig, Vector3 position)
         {
-            var enemy = GameObject.Instantiate(enemyConfig.Prefab, _gameManager.Enviroment.transform);
+            var enemy = Object.Instantiate(enemyConfig.Prefab, _gameManager.Enviroment.transform);
 
             var healthBarAsset = _enemiesConfiguration.HealthBar;
-            var healthBar = GameObject.Instantiate(healthBarAsset, _uiManager.HealthBarContainer);
+            var healthBar = Object.Instantiate(healthBarAsset, _uiManager.HealthBarContainer);
 
             enemy.Init(enemyConfig);
             enemy.transform.position = position;
 
             enemy.DamageTaken += OnDamageTaken;
 
-            _enemiesInfo.Add(new EnemyInfo() { Enemy = enemy, HealthBar = healthBar});
+            _enemiesInfo.Add(new EnemyInfo() { Enemy = enemy, HealthBar = healthBar });
         }
 
         private void OnDamageTaken(Enemy enemy)

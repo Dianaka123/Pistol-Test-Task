@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.InputSystem.Interface
+﻿namespace Assets.Scripts.Systems.Shoot
 {
     public interface IShootingNotifier
     {

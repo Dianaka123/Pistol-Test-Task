@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.InputSystem.Implementation.Joystick.Base;
+﻿using Assets.Scripts.Systems.InputSystem.Implementation.Joystick.Base;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.InputSystem.Implementation.Joystick
+namespace Assets.Scripts.Systems.InputSystem.Implementation.Joystick
 {
     public class DynamicJoystick : JoystickBase
     {

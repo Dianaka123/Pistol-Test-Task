@@ -1,9 +1,7 @@
-using Assets.Scripts.InputSystem.Interface;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-namespace Assets.Scripts.InputSystem.Implementation
+namespace Assets.Scripts.Systems.Shoot
 {
     public class PlayerShootingNotifier : MonoBehaviour, IShootingNotifier, IPointerDownHandler, IPointerUpHandler
     {
@@ -16,7 +14,7 @@ namespace Assets.Scripts.InputSystem.Implementation
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            IsShoot= false;
+            IsShoot = false;
         }
     }
 }

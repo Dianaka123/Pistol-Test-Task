@@ -1,6 +1,6 @@
+using Assets.Scripts.Configurations;
 using System;
 using UnityEngine;
-using static Assets.Scripts.Configurations.EnemiesConfiguration;
 
 namespace Assets.Scripts.Models
 {
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Models
             _collider = GetComponent<Collider2D>();
         }
 
-        public void Init(EnemyConfig config)
+        public void Init(EnemiesConfiguration.EnemyConfig config)
         {
             _maxHealth = config.Health;
             Health = config.Health;

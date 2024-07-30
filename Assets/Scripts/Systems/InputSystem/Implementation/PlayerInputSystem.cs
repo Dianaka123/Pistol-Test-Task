@@ -1,15 +1,16 @@
-using Assets.Scripts.InputSystem.Interface;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Models;
-using Assets.Scripts.Systems;
+using Assets.Scripts.Systems.Enemies;
+using Assets.Scripts.Systems.InputSystem.Interface;
+using Assets.Scripts.Systems.Shoot;
 using Assets.Scripts.Systems.Weapons;
 using System.Linq;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Handlers
+namespace Assets.Scripts.Systems.InputSystem.Implementation
 {
-    public class PlayerInputHandler : IFixedTickable
+    public class PlayerInputSystem : IFixedTickable
     {
         private readonly IMovingSystem _inputSystem;
         private readonly IShootingNotifier _shootingNotifier;
@@ -17,7 +18,7 @@ namespace Assets.Scripts.Handlers
         private readonly IEnemyManager _enemyManager;
         private readonly GameManager _gameManager;
 
-        public PlayerInputHandler(IMovingSystem inputSystem, IShootingNotifier shootingNotifier, GameManager gameManager, IEnemyManager enemyManager, IWeaponSystem weaponSystem)
+        public PlayerInputSystem(IMovingSystem inputSystem, IShootingNotifier shootingNotifier, GameManager gameManager, IEnemyManager enemyManager, IWeaponSystem weaponSystem)
         {
             _inputSystem = inputSystem;
             _gameManager = gameManager;
@@ -37,8 +38,8 @@ namespace Assets.Scripts.Handlers
 
             var enemyRotation = ComputeEnemyRotation();
             if (direction == Vector2.zero && enemyRotation == null)
-            { 
-                return; 
+            {
+                return;
             }
 
             var rotationAngle = enemyRotation ?? ComputeDefaultRotation(direction);
@@ -95,7 +96,6 @@ namespace Assets.Scripts.Handlers
                 }
             }
 
-            Debug.Log(nearEnemy?.name);
             return minDistance < radius ? nearEnemy : null;
         }
     }

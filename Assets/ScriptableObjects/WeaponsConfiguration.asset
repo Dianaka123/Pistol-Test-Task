@@ -16,14 +16,14 @@ MonoBehaviour:
   - Weapon: {fileID: 21300000, guid: 6e0f7ab0ffd75354993315eb08e68f51, type: 3}
     Bullet: {fileID: 21300000, guid: 9a397e83c4c3c994c988babb654f2b5d, type: 3}
     Damage: 5
-    HitRadius: 5
+    HitRadius: 15
     AdditionalBulletCount: 0
     ShootAngle: 0
     Type: 0
   - Weapon: {fileID: 21300000, guid: 7f1f138616f8f4e4d99248c8a2001e68, type: 3}
     Bullet: {fileID: 21300000, guid: 9a397e83c4c3c994c988babb654f2b5d, type: 3}
     Damage: 10
-    HitRadius: 3
+    HitRadius: 10
     AdditionalBulletCount: 2
     ShootAngle: 60
     Type: 1

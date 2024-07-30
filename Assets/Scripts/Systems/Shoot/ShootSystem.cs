@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Configurations;
-using Assets.Scripts.InputSystem.Interface;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Models;
 using Assets.Scripts.Systems.Weapons;
@@ -8,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.InputSystem.Implementation
+namespace Assets.Scripts.Systems.Shoot
 {
     public class ShootSystem : IFixedTickable
     {
@@ -70,8 +69,8 @@ namespace Assets.Scripts.InputSystem.Implementation
                 var bulletCount = weapon.AdditionalBulletCount * 2 + 1;
                 var bulletDamage = weapon.Damage / bulletCount;
 
-                Bullet.SpawnArgs GetSpawnArgs(Quaternion rotation) 
-                    => new (weapon.HitRadius, bulletDamage, weapon.Bullet, player.WeaponShootTransform.position, rotation);
+                Bullet.SpawnArgs GetSpawnArgs(Quaternion rotation)
+                    => new(weapon.HitRadius, bulletDamage, weapon.Bullet, player.WeaponShootTransform.position, rotation);
 
                 _bullets.Add(_pool.Spawn(GetSpawnArgs(player.transform.rotation)));
 

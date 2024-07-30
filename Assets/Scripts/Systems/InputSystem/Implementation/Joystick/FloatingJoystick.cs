@@ -1,10 +1,7 @@
-﻿using Assets.Scripts.InputSystem.Implementation.Joystick.Base;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Assets.Scripts.Systems.InputSystem.Implementation.Joystick.Base;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.InputSystem.Implementation.Joystick
+namespace Assets.Scripts.Systems.InputSystem.Implementation.Joystick
 {
     public class FloatingJoystick : JoystickBase
     {
