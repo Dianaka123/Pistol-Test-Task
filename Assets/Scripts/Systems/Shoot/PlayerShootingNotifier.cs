@@ -9,19 +9,6 @@ namespace Assets.Scripts.InputSystem.Implementation
     {
         public bool IsShoot { get; private set; }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                IsShoot = true;
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                IsShoot = false;
-            }
-        }
-
         public void OnPointerDown(PointerEventData eventData)
         {
             IsShoot = true;

@@ -1,6 +1,7 @@
 using Assets.Scripts.InputSystem.Interface;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Models;
+using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.Handlers
@@ -20,7 +21,7 @@ namespace Assets.Scripts.Handlers
 
         public void FixedTick()
         {
-            _gameManager.Player.PlayRunAnimation(_inputSystem.Direction != UnityEngine.Vector2.zero);
+            _gameManager.Player.PlayRunAnimation(_inputSystem.Direction != Vector2.zero);
             _gameManager.Player.PlayShootAnimation(_shootingNotifier.IsShoot);
 
             _gameManager.Player.Move(_inputSystem.Direction);

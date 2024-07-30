@@ -15,13 +15,14 @@ namespace Assets.Scripts.Configurations
             public Sprite Weapon;
             public Sprite Bullet;
             public float Damage;
-            public float HeatRadius;
+            public float HitRadius;
             public int AdditionalBulletCount;
             public float ShootAngle;
             public WeaponTypes Type;
         }
 
         public List<WeaponConfiguration> weapons = new ();
+        public float bulletSpeed;
 
         private void OnValidate()
         {

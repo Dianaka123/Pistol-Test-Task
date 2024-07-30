@@ -11,27 +11,47 @@ namespace Assets.Scripts.Models
 
         private float _radius;
         private Vector3 _startPosition;
+        private float _damage;
+        public bool IsInsideRadius => GetBulletDistanceFromStart() < _radius;
+        public float Damage => _damage;
 
-        public void Init(float radius, Sprite image, Vector3 startPosition, Quaternion startRotation)
+        public void Init(SpawnArgs spawnArgs)
         {
-            _image.sprite = image;
-            _radius = radius;
-            _startPosition = startPosition;
+            _image.sprite = spawnArgs.Image;
+            _radius = spawnArgs.Radius;
+            _startPosition = spawnArgs.StartPosition;
+            _damage = spawnArgs.Damage;
 
             transform.position = _startPosition;
-            transform.rotation = startRotation;
+            transform.rotation = spawnArgs.StartRotation;
         }
 
-        public bool IsMoveInsideRadius => GetBulletDistanceFromStart() > _radius;
+        private float GetBulletDistanceFromStart() => (transform.position - _startPosition).magnitude;
 
-        public class Pool : MonoMemoryPool<float, Sprite, Vector3, Quaternion, Bullet>
+        public class SpawnArgs
         {
-            protected override void Reinitialize(float radius, Sprite image, Vector3 startPosition, Quaternion startRotattion, Bullet item)
+            public float Radius { get; }
+            public float Damage { get; }
+            public Sprite Image { get; }
+            public Vector3 StartPosition { get; }
+            public Quaternion StartRotation { get; }
+
+            public SpawnArgs(float radius, float damage, Sprite image, Vector3 startPosition, Quaternion startRotation)
             {
-                item.Init( radius, image, startPosition, startRotattion);
+                Radius = radius;
+                Damage = damage;
+                Image = image;
+                StartPosition = startPosition;
+                StartRotation = startRotation;
             }
         }
 
-        private float GetBulletDistanceFromStart() => Mathf.Sqrt(Mathf.Pow(transform.position.x - _startPosition.x, 2f) + Mathf.Pow(transform.position.y - _startPosition.y, 2f));
+        public class Pool : MonoMemoryPool<SpawnArgs, Bullet>
+        {
+            protected override void Reinitialize(SpawnArgs spawnArgs, Bullet item)
+            {
+                item.Init(spawnArgs);
+            }
+        }
     }
 }

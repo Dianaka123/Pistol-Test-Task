@@ -1,6 +1,5 @@
 using Assets.Scripts.Configurations;
 using Assets.Scripts.Enums;
-using Assets.Scripts.InputSystem.Interface;
 using Assets.Scripts.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Assets.Scripts.InputSystem.Implementation
+namespace Assets.Scripts.Systems.Weapons
 {
     public class SwitchWeaponsByButtons : MonoBehaviour, IWeaponSystem, ISwitchWeaponNotifier
     {
@@ -55,7 +54,7 @@ namespace Assets.Scripts.InputSystem.Implementation
         {
             var weapon = GetWeaponByType(type);
             image.sprite = weapon.WeaponImage;
-            button.onClick.AddListener(() => 
+            button.onClick.AddListener(() =>
             {
                 _currentWeapon = weapon;
 

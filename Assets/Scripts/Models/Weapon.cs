@@ -17,7 +17,7 @@ namespace Assets.Scripts.Models
         public Weapon(WeaponConfiguration weaponConfiguration)
         {
             Damage = weaponConfiguration.Damage;
-            HeatRadius = weaponConfiguration.HeatRadius;
+            HeatRadius = weaponConfiguration.HitRadius;
             AdditionalBulletCount = weaponConfiguration.AdditionalBulletCount;
             Bullet = weaponConfiguration.Bullet;
             WeaponImage = weaponConfiguration.Weapon;

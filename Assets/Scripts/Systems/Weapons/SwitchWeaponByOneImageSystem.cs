@@ -1,5 +1,4 @@
 using Assets.Scripts.Configurations;
-using Assets.Scripts.InputSystem.Interface;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Models;
 using System;
@@ -9,7 +8,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Assets.Scripts.InputSystem.Implementation
+namespace Assets.Scripts.Systems.Weapons
 {
     public class SwitchWeaponByOneImageSystem : MonoBehaviour, IPointerClickHandler, IWeaponSystem
     {
@@ -30,7 +29,7 @@ namespace Assets.Scripts.InputSystem.Implementation
 
             _weapons = new List<Weapon>(weaponsConfig.weapons.Count);
 
-            foreach(var weapon in weaponsConfigList)
+            foreach (var weapon in weaponsConfigList)
             {
                 _weapons.Add(new Weapon(weapon));
             }

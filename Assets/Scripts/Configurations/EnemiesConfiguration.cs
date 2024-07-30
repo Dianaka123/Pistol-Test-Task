@@ -12,10 +12,10 @@ namespace Assets.Scripts.Configurations
         public class EnemyConfig
         {
             public Enemy Prefab;
-            public int Health;
-            public bool isCanBeDestroyed;
+            public float Health;
         }
-
+        
+        public HealthBar HealthBar;
         public List<EnemyConfig> Enemies = new ();
     }
 }

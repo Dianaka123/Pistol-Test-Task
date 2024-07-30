@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e02d49857f6dd4b9445724dcbad76a, type: 3}
   m_Name: EnemiesConfiguration
   m_EditorClassIdentifier: 
+  HealthBar: {fileID: 3245216750409531032, guid: 190b152690476da4d8079ca46e26ea18, type: 3}
+  Enemies:
+  - Prefab: {fileID: -5067528177693127821, guid: c221cf44dfb10454fbbeb1d1a7a6d8ff, type: 3}
+    Health: 100
+  - Prefab: {fileID: -4566184886731381390, guid: 707c9c6a343531042be1db24323ddfce, type: 3}
+    Health: 100

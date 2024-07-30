@@ -13,7 +13,9 @@ namespace Assets.Scripts
         private readonly EnviromentConfiguration _enviromentConfiguration;
         private readonly GameManager _gameManager;
 
-        public GameWorldInitializer(PlayerConfiguration playerConfiguration, GameManager gameManager, EnviromentConfiguration enviromentConfiguration)
+        public GameWorldInitializer(PlayerConfiguration playerConfiguration, GameManager gameManager,
+            EnviromentConfiguration enviromentConfiguration, EnemiesConfiguration enemiesConfiguration,
+            UIManager uIManager)
         {
             _playerConfiguration = playerConfiguration;
             _gameManager = gameManager;
@@ -26,8 +28,9 @@ namespace Assets.Scripts
 
             var player = GameObject.Instantiate<Player>(_playerConfiguration.Prefab);
             player.transform.SetParent(enviroment.transform);
-            player.Init(_playerConfiguration.Health, _playerConfiguration.Speed);
+            player.Init(_playerConfiguration.Speed);
 
+            _gameManager.Enviroment = enviroment;
             _gameManager.Player = player;
         }
     }

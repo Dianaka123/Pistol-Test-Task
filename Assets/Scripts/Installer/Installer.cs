@@ -2,6 +2,7 @@ using Assets.Scripts.Handlers;
 using Assets.Scripts.InputSystem.Implementation;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Models;
+using Assets.Scripts.Systems;
 using Zenject;
 
 namespace Assets.Scripts.Installer
@@ -14,8 +15,13 @@ namespace Assets.Scripts.Installer
         {
             Container.BindInterfacesAndSelfTo<GameManager>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<GameWorldInitializer>().AsSingle();
+            Container.BindInitializableExecutionOrder<GameWorldInitializer>(0);
+            Container.BindInitializableExecutionOrder<EnemySystem>(10);
 
+            Container.BindInterfacesAndSelfTo<GameWorldInitializer>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EnemySystem>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<PlayerFollowSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputHandler>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ShootSystem>().AsSingle();

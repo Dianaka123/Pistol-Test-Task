@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Models
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Player : MonoBehaviour
     {
         private readonly int WalkTriggerHash = Animator.StringToHash("Walk");
@@ -13,14 +14,15 @@ namespace Assets.Scripts.Models
         [SerializeField]
         private Transform _weaponShootPosition;
 
-        private int _health;
+        [SerializeField]
+        private Rigidbody2D _rigidbody2D;
+
         private float _speed;
 
         public Transform WeaponShootTransform => _weaponShootPosition;
 
-        public void Init(int health, float speed)
+        public void Init(float speed)
         {
-            _health = health;
             _speed = speed;
         }
 
@@ -36,18 +38,17 @@ namespace Assets.Scripts.Models
 
         public void Move(Vector2 direction)
         {
-            var directionV3 = new Vector3(direction.x, direction.y, 0);
-            transform.position += directionV3 * _speed;
+            _rigidbody2D.MovePosition(_rigidbody2D.position + direction * _speed);
             
             if(direction == Vector2.zero) { return; }
 
             var rotationTan = direction.y / direction.x;
             var rotationAngle = Mathf.Atan(rotationTan) * 180 / Mathf.PI - 90;
-            if(direction.x < 0)
+            if (direction.x < 0)
             {
                 rotationAngle += 180;
             }
-            transform.rotation = Quaternion.AngleAxis(rotationAngle, new Vector3(0, 0, 1));
+            _rigidbody2D.MoveRotation(rotationAngle);
         }
 
         private void PlayAnimationByBool(bool isAniamtionActive, int hash)
