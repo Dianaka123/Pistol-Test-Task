@@ -39,16 +39,11 @@ namespace Assets.Scripts.Models
         public void Move(Vector2 direction)
         {
             _rigidbody2D.MovePosition(_rigidbody2D.position + direction * _speed);
-            
-            if(direction == Vector2.zero) { return; }
+        }
 
-            var rotationTan = direction.y / direction.x;
-            var rotationAngle = Mathf.Atan(rotationTan) * 180 / Mathf.PI - 90;
-            if (direction.x < 0)
-            {
-                rotationAngle += 180;
-            }
-            _rigidbody2D.MoveRotation(rotationAngle);
+        public void SetRotation(float angle)
+        {
+            _rigidbody2D.MoveRotation(angle);
         }
 
         private void PlayAnimationByBool(bool isAniamtionActive, int hash)

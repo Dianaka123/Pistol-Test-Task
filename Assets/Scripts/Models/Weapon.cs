@@ -7,7 +7,7 @@ namespace Assets.Scripts.Models
     public class Weapon
     {
         public float Damage { get; private set; }
-        public float HeatRadius { get; private set; }
+        public float HitRadius { get; private set; }
         public float ShootAngle { get; private set; }
         public int AdditionalBulletCount { get; private set; }
         public Sprite Bullet { get; private set; }
@@ -17,7 +17,7 @@ namespace Assets.Scripts.Models
         public Weapon(WeaponConfiguration weaponConfiguration)
         {
             Damage = weaponConfiguration.Damage;
-            HeatRadius = weaponConfiguration.HitRadius;
+            HitRadius = weaponConfiguration.HitRadius;
             AdditionalBulletCount = weaponConfiguration.AdditionalBulletCount;
             Bullet = weaponConfiguration.Bullet;
             WeaponImage = weaponConfiguration.Weapon;

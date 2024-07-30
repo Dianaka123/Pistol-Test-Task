@@ -9,7 +9,7 @@ using static Assets.Scripts.Configurations.EnemiesConfiguration;
 
 namespace Assets.Scripts.Systems
 {
-    public class EnemySystem : IInitializable, ITickable
+    public class EnemySystem : IInitializable, ITickable, IEnemyManager
     {
         private class EnemyInfo
         {
@@ -75,5 +75,7 @@ namespace Assets.Scripts.Systems
             }
             enemyInfo.HealthBar.CurrentHealth = enemy.RelativeHealth;
         }
+
+        public IEnumerable<Enemy> GetEnemies() => _enemiesInfo.Select(it => it.Enemy);
     }
 }

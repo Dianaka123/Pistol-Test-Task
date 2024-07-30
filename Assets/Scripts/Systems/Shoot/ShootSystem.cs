@@ -63,7 +63,7 @@ namespace Assets.Scripts.InputSystem.Implementation
                 {
                     return;
                 }
-                _intervalFromLastShoot = TimeSpan.FromSeconds(_intervalFromLastShoot.TotalSeconds % TimeoutSec);
+                _intervalFromLastShoot = TimeSpan.Zero;
 
                 var weapon = _weaponSystem.CurrentWeapon;
                 var player = _gameManager.Player;
@@ -71,7 +71,7 @@ namespace Assets.Scripts.InputSystem.Implementation
                 var bulletDamage = weapon.Damage / bulletCount;
 
                 Bullet.SpawnArgs GetSpawnArgs(Quaternion rotation) 
-                    => new (weapon.HeatRadius, bulletDamage, weapon.Bullet, player.WeaponShootTransform.position, rotation);
+                    => new (weapon.HitRadius, bulletDamage, weapon.Bullet, player.WeaponShootTransform.position, rotation);
 
                 _bullets.Add(_pool.Spawn(GetSpawnArgs(player.transform.rotation)));
 

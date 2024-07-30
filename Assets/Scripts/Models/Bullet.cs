@@ -26,7 +26,7 @@ namespace Assets.Scripts.Models
             transform.rotation = spawnArgs.StartRotation;
         }
 
-        private float GetBulletDistanceFromStart() => (transform.position - _startPosition).magnitude;
+        private float GetBulletDistanceFromStart() => Vector3.Distance(transform.position, _startPosition);
 
         public class SpawnArgs
         {
